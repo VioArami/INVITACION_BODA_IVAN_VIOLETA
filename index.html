@@ -27,18 +27,16 @@
         }
 
         /* --- 1. PORTADA --- */
-        #banner {
+        .hero {
             width: 100%;
-            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             background: white;
-            padding: 20px 0;
+            padding: 20px;
         }
-        #banner img {
-            max-width: 90%;
-            max-height: 90vh;
+        .hero img {
+            max-width: 100%;
             height: auto;
             object-fit: contain;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -94,37 +92,63 @@
         /* --- 5. LUGAR --- */
         #location { padding: 60px 20px; background: white; }
         .location-info { margin-bottom: 30px; }
-        .map-frame { width: 100%; max-width: 700px; height: 350px; border: none; border-radius: 12px; background: #eee; }
+        .map-wrapper {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+        }
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
 
         /* --- 6. ITINERARIO --- */
-        .itinerary-section { padding: 80px 20px; max-width: 700px; margin: auto; }
-        .itinerary-title { font-family: 'Dancing Script', cursive; font-size: 4rem; color: #888; margin-bottom: 40px; }
-        
-        .timeline { position: relative; padding: 20px 0; }
+        .itinerary-section {
+            padding: 80px 10px;
+            margin: auto;
+        }
+        .itinerary-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #888;
+            margin-bottom: 40px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            width: fit-content;
+            margin: 0 auto;
+        }
         .timeline::after {
             content: ''; position: absolute; width: 2px; background-color: var(--accent-beige);
             top: 0; bottom: 0; left: 50%; margin-left: -1px;
         }
 
-        .itinerary-item { 
-            width: 50%; 
-            padding: 20px 30px; 
-            position: relative; 
-            margin-bottom: 30px; 
+        .itinerary-item {
+            width: 50%;
+            padding: 10px 15px;
+            position: relative;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 8px;
         }
 
         .itinerary-item::after {
-            content: ''; position: absolute; width: 14px; height: 14px; 
-            background-color: var(--accent-beige); border-radius: 50%; 
+            content: ''; position: absolute; width: 14px; height: 14px;
+            background-color: var(--accent-beige); border-radius: 50%;
             top: 50%; transform: translateY(-50%); z-index: 1;
         }
 
-        .left { left: 0; justify-content: flex-end; padding-right: 45px; }
-        .right { left: 50%; justify-content: flex-start; padding-left: 45px; }
-        
+        .left { left: 0; justify-content: flex-end; padding-right: 25px; }
+        .right { left: 50%; justify-content: flex-start; padding-left: 25px; }
+
         .left::after { right: -7px; }
         .right::after { left: -7px; }
 
@@ -132,30 +156,37 @@
         .left .text-block { text-align: right; }
         .right .text-block { text-align: left; }
 
-        .itinerary-item h3 { font-size: 1.3rem; font-weight: 600; color: var(--text-dark); margin: 0; }
-        .itinerary-item p { font-family: 'Dancing Script', cursive; font-size: 1.6rem; color: #555; margin: 0; }
-        
-        .icon-svg { 
-            width: 32px; 
-            height: 32px; 
-            fill: none; 
-            stroke: var(--accent-green); 
-            stroke-width: 1.5; 
+        .itinerary-item h3 { font-size: 1rem; font-weight: 600; color: var(--text-dark); margin: 0; }
+        .itinerary-item p { font-family: 'Dancing Script', cursive; font-size: 1.2rem; color: #555; margin: 0; }
+
+        .icon-svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: var(--accent-green);
+            stroke-width: 1.5;
             flex-shrink: 0;
         }
 
+        /* Móvil: mantener zigzag, solo achicar */
         @media (max-width: 600px) {
-            .timeline::after { left: 20px; }
-            .itinerary-item { 
-                width: 100%; 
-                left: 0; 
-                text-align: left; 
-                padding-left: 50px; 
-                justify-content: flex-start;
-                flex-direction: row !important; /* Siempre Icono - Texto en móvil */
+            .itinerary-section { padding: 60px 5px; }
+            .itinerary-title { font-size: 3rem; }
+
+            .itinerary-item {
+                padding: 8px 12px;
+                gap: 6px;
+                margin-bottom: 15px;
             }
-            .left .text-block { text-align: left; }
-            .itinerary-item::after { left: 13px; }
+
+            .left { padding-right: 20px; }
+            .right { padding-left: 20px; }
+
+            .itinerary-item h3 { font-size: 0.9rem; }
+            .itinerary-item p { font-size: 1rem; }
+
+            .icon-svg { width: 20px; height: 20px; }
+
             .timer-number { font-size: 2.5rem; }
         }
 
@@ -201,13 +232,15 @@
             <p style="font-size: 1.2rem;"><strong>Terraza Vista Verde</strong></p>
             <p style="color: var(--text-light);">P.º del Yacht y Golf Club, Lambaré, Paraguay</p>
         </div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3605.129301444557!2d-57.638904925221354!3d-25.366982630400244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x945da9409c08f125%3A0x863d692798e5517b!2sTerrazas%20Vista%20Verde!5e0!3m2!1ses-419!2spy!4v1775086384610!5m2!1ses-419!2spy" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-wrapper">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3605.129301444557!2d-57.638904925221354!3d-25.366982630400244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x945da9409c08f125%3A0x863d692798e5517b!2sTerrazas%20Vista%20Verde!5e0!3m2!1ses-419!2spy!4v1775086384610!5m2!1ses-419!2spy" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
     </section>
 
     <section class="itinerary-section">
         <h2 class="itinerary-title">Itinerario</h2>
         <div class="timeline">
-            
+
             <div class="itinerary-item left">
                 <div class="text-block">
                     <h3>15:00</h3>
@@ -223,17 +256,17 @@
                     <p>Social</p>
                 </div>
             </div>
-            
+
             <div class="itinerary-item left">
                 <div class="text-block">
                     <h3>18:00</h3>
                     <p>Baile de Novios</p>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-svg"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-svg"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>
             </div>
 
             <div class="itinerary-item right">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-svg"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-svg"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
                 <div class="text-block">
                     <h3>19:00</h3>
                     <p>Cena</p>
@@ -245,7 +278,7 @@
                     <h3>20:30</h3>
                     <p>Calabaza calabaza... <br> Cada uno a su casa</p>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-svg"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l-4 2"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-svg"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l-4 2"/></svg>
             </div>
 
         </div>
@@ -282,7 +315,7 @@
         setInterval(() => {
             const now = new Date().getTime();
             const diff = target - now;
-            
+
             if (diff > 0) {
                 document.getElementById('days').innerText = String(Math.floor(diff / 86400000)).padStart(2, '0');
                 document.getElementById('hours').innerText = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
@@ -294,7 +327,7 @@
         document.getElementById('rsvpForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const n = document.getElementById('nombre').value;
-            const a = document.getElementById('asistencia').value; 
+            const a = document.getElementById('asistencia').value;
             window.open(`https://wa.me/595982514589?text=Hola!, soy ${n}. ${a} ir a la boda de Iván y Vio.`, '_blank');
         });
     </script>
