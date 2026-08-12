@@ -139,11 +139,44 @@
             .event-time-section { padding: 60px 20px; }
             .event-time-title { font-size: 3rem; }
             .event-time { font-size: 2.8rem; }
+            .gift-title { font-size: 3rem; }
 
             .timer-number { font-size: 2.5rem; }
         }
 
-        /* --- 7. RSVP --- */
+        /* --- 7. LISTA DE REGALOS --- */
+        #gifts { padding: 80px 20px; background-color: white; }
+        .gift-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        .gift-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 480px;
+            margin: 0 auto 30px;
+        }
+        .btn-gift {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent-green);
+            color: white;
+            text-decoration: none;
+            padding: 16px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: opacity 0.3s;
+        }
+        .btn-gift:hover { opacity: 0.9; }
+        .btn-gift svg { width: 20px; height: 20px; fill: none; stroke: white; stroke-width: 2; flex-shrink: 0; }
+
+        /* --- 8. RSVP --- */
         #rsvp { padding: 80px 20px; background-color: white; }
         .rsvp-form { display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: auto; }
         input, select { padding: 15px; border: 1px solid #ddd; font-family: inherit; border-radius: 8px; font-size: 1rem; }
@@ -214,6 +247,15 @@
         <h2 class="event-time-title">Hora del Evento</h2>
         <p class="event-time">16:00</p>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-svg"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    </section>
+
+    <section id="gifts">
+        <h2 class="gift-title">Lista de Bodas</h2>
+        <p class="gift-text">Tu presencia ya es el mejor regalo que nos podés dar. Pero si además nos querés regalar algo más, acá te dejamos nuestra lista.</p>
+        <a class="btn-gift" href="https://www.tupi.com.py/regalos_en_lista/9721/Boda-de-Ivan-Gennaro-y-Violeta-Nunez-el-11-09-2026" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>
+            Ver lista en Tupi
+        </a>
     </section>
 
     <section id="rsvp">
