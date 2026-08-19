@@ -109,6 +109,11 @@
             display: block;
         }
 
+        /* --- 5b. DRESS CODE --- */
+        /* Sin esto quedan pegados: el reset de arriba les saca todo el margen */
+        .dress-code { margin-bottom: 28px; }
+        #dress-code svg { margin: 0 12px; }
+
         /* Titulo de seccion: un unico tratamiento para toda la pagina */
         .section-title {
             font-family: 'Montserrat', sans-serif;
@@ -176,83 +181,6 @@
         .btn-gift:hover { opacity: 0.9; }
         .btn-gift svg { width: 20px; height: 20px; fill: none; stroke: white; stroke-width: 2; flex-shrink: 0; }
 
-        /* Separador "o si preferis" entre las dos opciones de regalo */
-        .gift-divider {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            max-width: 380px;
-            margin: 35px auto;
-            color: var(--text-light);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .gift-divider::before, .gift-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background-color: var(--accent-beige);
-        }
-
-        .bank-card {
-            max-width: 380px;
-            margin: 0 auto;
-            border: 1px solid var(--accent-beige);
-            border-radius: 12px;
-            padding: 25px 20px;
-            text-align: left;
-        }
-        .bank-card-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--text-dark);
-        }
-        .bank-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 15px;
-            padding: 9px 0;
-            border-bottom: 1px solid #f0eae3;
-        }
-        .bank-row:last-of-type { border-bottom: none; }
-        .bank-row dt {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-light);
-            flex-shrink: 0;
-        }
-        .bank-row dd { font-size: 0.95rem; font-weight: 600; text-align: right; word-break: break-word; }
-
-        .btn-copy {
-            width: 100%;
-            margin-top: 20px;
-            padding: 13px;
-            background: none;
-            border: 1px solid var(--accent-green);
-            color: var(--accent-green);
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .btn-copy:hover { background-color: var(--accent-green); color: white; }
-        .btn-copy.copiado { background-color: var(--accent-green); color: white; }
-
-        /* --- 8. RSVP --- */
-        #rsvp { padding: 80px 20px; background-color: white; }
-        .rsvp-form { display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: auto; }
-        input, select { padding: 15px; border: 1px solid #ddd; font-family: inherit; border-radius: 8px; font-size: 1rem; }
-        .btn-confirm { background: var(--accent-green); color: white; border: none; padding: 18px; text-transform: uppercase; cursor: pointer; font-weight: 600; border-radius: 8px; transition: opacity 0.3s; }
-        .btn-confirm:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
@@ -322,33 +250,11 @@
 
     <section id="gifts">
         <h2 class="section-title gift-title">Wedding Registry</h2>
-        <p class="gift-text">Your presence is already the greatest gift you could give us. We are blessed to have a home filled with everything we need, so if you would also like to give us something, you can choose from our registry or send us a bank transfer, whichever is easiest for you.</p>
+        <p class="gift-text">Your presence is already the greatest gift you could give us. We are blessed to have a home filled with everything we need, so if you would also like to give us something, you can choose from our registry.</p>
         <a class="btn-gift" href="https://www.tupi.com.py/regalos_en_lista/9721/Boda-de-Ivan-Gennaro-y-Violeta-Nunez-el-11-09-2026" target="_blank" rel="noopener noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>
             View Registry at Tupi
         </a>
-
-        <div class="gift-divider"><span>or if you prefer</span></div>
-
-        <dl class="bank-card">
-            <p class="bank-card-title">Bank Transfer</p>
-            <div class="bank-row"><dt>ID Alias</dt><dd id="aliasCuenta">5705312</dd></div>
-            <div class="bank-row"><dt>Name</dt><dd>Iván Gennaro</dd></div>
-            <button type="button" class="btn-copy" id="btnCopiar">Copy Alias</button>
-        </dl>
-    </section>
-
-    <section id="rsvp">
-        <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 30px; font-size: 2.5rem;">RSVP</h2>
-        <form class="rsvp-form" id="rsvpForm">
-            <input type="text" id="nombre" placeholder="Full Name" required>
-            <select id="asistencia" required>
-                <option value="">Will you be attending?</option>
-                <option value="I will be attending">Yes, I'll be there!</option>
-                <option value="I won't be able to attend">Sorry, I can't make it</option>
-            </select>
-            <button type="submit" class="btn-confirm">Confirm via WhatsApp</button>
-        </form>
     </section>
 
     <script>
@@ -430,36 +336,6 @@
             }
         }, 1000);
 
-        // Copiar el alias al portapapeles
-        const btnCopiar = document.getElementById('btnCopiar');
-        btnCopiar.addEventListener('click', async () => {
-            const nro = document.getElementById('aliasCuenta').innerText.trim();
-            try {
-                await navigator.clipboard.writeText(nro);
-            } catch (err) {
-                // Respaldo para navegadores viejos o sin https
-                const tmp = document.createElement('textarea');
-                tmp.value = nro;
-                document.body.appendChild(tmp);
-                tmp.select();
-                document.execCommand('copy');
-                document.body.removeChild(tmp);
-            }
-            btnCopiar.innerText = 'Copied!';
-            btnCopiar.classList.add('copiado');
-            setTimeout(() => {
-                btnCopiar.innerText = 'Copy Alias';
-                btnCopiar.classList.remove('copiado');
-            }, 2000);
-        });
-
-        // WhatsApp
-        document.getElementById('rsvpForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const n = document.getElementById('nombre').value;
-            const a = document.getElementById('asistencia').value;
-            window.open(`https://wa.me/595982514589?text=Hi! I'm ${n}. ${a} Iván and Vio's wedding.`, '_blank');
-        });
     </script>
 </body>
 </html>
